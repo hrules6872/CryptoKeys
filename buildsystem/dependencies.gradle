@@ -1,0 +1,96 @@
+/*
+ * 	Copyright (c) 2018. Héctor de Isidro - hrules6872
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ext {
+
+  configuration = [
+
+      androidBuildToolsVersion = '27.0.3',
+      androidBuildMinSDKVersion = '21',
+      androidBuildTargetSDKVersion = '26',
+      androidBuildCompileSDKVersion = 'android-26',
+
+      appVersionMajor = 1,
+      appVersionMinor = 0,
+      appVersionPatch = 0,
+      appVersionBuild = 0,
+
+      appVersionCode = appVersionMajor * 1000000 + appVersionMinor * 10000 + appVersionPatch * 100 + appVersionBuild,
+      appVersionName = "${appVersionMajor}.${appVersionMinor}.${appVersionPatch}"
+
+  ]
+
+  dependencies = [
+
+      kotlinCoroutinesVersion = '0.21.2',
+      okhttpVersion = '3.9.1',
+      koinVersion = '0.8.0',
+      projectDependencies = [
+
+          kotlinStdJdk8       : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+          kotlinStdJre        : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin_version}",
+          kotlinSerialization : "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version",
+          kotlinCoroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinCoroutinesVersion}",
+          koinCore            : "org.koin:koin-core:${koinVersion}",
+
+      ],
+
+      junitVersion = '4.12',
+      hamcrestVersion = '1.3',
+      mockitoVersion = '2.13.0',
+      jsonVersion = '20160212',
+      testDependencies = [
+
+          junit      : "junit:junit:${junitVersion}",
+          hamcrest   : "org.hamcrest:hamcrest-all:${hamcrestVersion}",
+          mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
+          json       : "org.json:json:${jsonVersion}",
+          koinTest   : "org.koin:koin-test:${koinVersion}",
+
+      ],
+
+      androidDependencies = [
+
+          kotlinCoroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinCoroutinesVersion}",
+          kotlinSerialization    : "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version",
+          koinAndroid            : "org.koin:koin-android:${koinVersion}",
+
+      ],
+
+      supportLibraryVersion = '27.0.2',
+      androidSupportDependencies = [
+
+          appCompat         : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+          supportAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
+          design            : "com.android.support:design:${supportLibraryVersion}",
+          support           : "com.android.support:support-v4:${supportLibraryVersion}",
+
+      ],
+
+      androidTestRunnerVersion = '1.0.1',
+      androidEspressoCoreVersion = '3.0.1',
+      androidTestDependencies = [
+
+          androidTestRunner     : "com.android.support.test:runner:${androidTestRunnerVersion}",
+          androidTestRunnerRules: "com.android.support.test:rules:${androidTestRunnerVersion}",
+          mockitoAndroid        : "org.mockito:mockito-android:${mockitoVersion}",
+          androidEspressoCore   : "com.android.support.test.espresso:espresso-core:${androidEspressoCoreVersion}",
+          androidEspressoContrib: "com.android.support.test.espresso:espresso-contrib:${androidEspressoCoreVersion}",
+          androidEspressoIntents: "com.android.support.test.espresso:espresso-intents:${androidEspressoCoreVersion}",
+
+      ]
+
+  ]
+}
