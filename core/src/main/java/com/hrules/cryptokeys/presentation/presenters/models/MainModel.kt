@@ -13,8 +13,12 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys
+package com.hrules.cryptokeys.presentation.presenters.models
 
-import android.support.v7.app.AppCompatActivity
+import com.hrules.cryptokeys.domain.entities.Item
+import com.hrules.cryptokeys.presentation.base.mvp.BaseModel
 
-class MainActivity : AppCompatActivity()
+data class MainModel(
+    var password: String = String(),
+    var list: MutableList<Item> = mutableListOf()
+) : BaseModel<String>()

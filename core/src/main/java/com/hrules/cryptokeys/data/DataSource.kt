@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.data
 
-import org.junit.Test;
+import com.hrules.cryptokeys.domain.entities.Item
 
-import static org.junit.Assert.assertEquals;
-
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
+interface DataSource {
+  fun create(password: String)
+  fun delete()
+  fun get(password: String): List<Item>
+  fun put(password: String, list: List<Item>)
+  fun initialized(): Boolean
 }

@@ -13,14 +13,10 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.domain.entities.serializers.base
 
-import org.junit.Test;
+interface Serializer<TYPE> {
+  fun stringify(input: TYPE): String
 
-import static org.junit.Assert.assertEquals;
-
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
+  fun parse(input: String): TYPE
 }

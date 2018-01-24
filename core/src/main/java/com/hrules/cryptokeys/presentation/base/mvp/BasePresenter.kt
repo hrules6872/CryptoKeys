@@ -13,14 +13,26 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.presentation.base.mvp
 
-import org.junit.Test;
+@Suppress("UNCHECKED_CAST")
+abstract class BasePresenter<MODEL : BaseModel<*>, VIEW : BaseView> {
+  private var _view: VIEW? = null
+  private var _model: MODEL = BaseModel<Any>() as MODEL
 
-import static org.junit.Assert.assertEquals;
+  val view
+    get() = _view
+  val model
+    get() = _model
 
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
+  open fun bind(model: MODEL, view: VIEW) {
+    this._view = view
+    this._model = model
+  }
+
+  open fun viewReady(first: Boolean = true) {}
+
+  open fun unbind() {
+    _view = null
   }
 }

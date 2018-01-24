@@ -13,14 +13,9 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.commons
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
+interface DebugLog {
+  fun d(vararg values: Any?)
+  fun d(value: Any, throwable: Throwable)
 }

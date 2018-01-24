@@ -13,14 +13,11 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.presentation.resources.helpers
 
-import org.junit.Test;
+import android.support.annotation.StringRes
+import com.hrules.cryptokeys.App
 
-import static org.junit.Assert.assertEquals;
-
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
+object AndroidResHelper {
+  fun getString(@StringRes resId: Int): String = App.instance.resources.getString(resId)
 }

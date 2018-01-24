@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.domain.entities
 
-import org.junit.Test;
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-import static org.junit.Assert.assertEquals;
-
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
-}
+@Serializable
+data class Item(
+    @SerialName("description") val description: String = String(),
+    @SerialName("text") val text: String = String()
+)

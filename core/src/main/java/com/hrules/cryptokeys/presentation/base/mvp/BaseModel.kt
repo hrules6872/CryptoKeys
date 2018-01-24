@@ -13,14 +13,11 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.presentation.base.mvp
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
+open class BaseModel<TYPE> {
+  open fun load(from: TYPE?) {}
+  open fun save(): TYPE? {
+    return null
   }
 }

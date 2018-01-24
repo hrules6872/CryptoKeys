@@ -1,5 +1,6 @@
 /*
- * 	Copyright (c) 2018. Héctor de Isidro - hrules6872
+ * Copyright (c) 2018. Héctor de Isidro - hrules6872
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +14,16 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.domain.entities.serializers
 
-import org.junit.Test;
+import com.hrules.cryptokeys.domain.entities.Item
+import com.hrules.cryptokeys.domain.entities.serializers.base.Serializer
+import kotlinx.serialization.json.JSON
 
-import static org.junit.Assert.assertEquals;
+object ItemSerializer : Serializer<Item> {
+  private val JSONParser: JSON = JSON()
 
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
+  override fun stringify(input: Item): String = JSONParser.stringify(input)
+
+  override fun parse(input: String): Item = JSONParser.parse(input)
 }

@@ -13,14 +13,11 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.presentation.resources.base
 
-import org.junit.Test;
+interface ResString {
+  val create: String
+  val unlock: String
 
-import static org.junit.Assert.assertEquals;
-
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
+  val errorUnknown: String
 }

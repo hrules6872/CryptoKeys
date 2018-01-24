@@ -13,14 +13,15 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.presentation.extensions
 
-import org.junit.Test;
+import android.app.Activity
+import android.widget.Toast
 
-import static org.junit.Assert.assertEquals;
+fun Activity.showMessageShort(text: String) {
+  Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+}
 
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
+fun Activity.showMessageLong(text: String) {
+  Toast.makeText(this, text, Toast.LENGTH_LONG).show()
 }

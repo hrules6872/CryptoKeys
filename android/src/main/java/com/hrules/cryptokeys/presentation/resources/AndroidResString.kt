@@ -13,14 +13,15 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.presentation.resources
 
-import org.junit.Test;
+import com.hrules.cryptokeys.R
+import com.hrules.cryptokeys.presentation.resources.base.ResString
+import com.hrules.cryptokeys.presentation.resources.helpers.AndroidResHelper
 
-import static org.junit.Assert.assertEquals;
+object AndroidResString : ResString {
+  override val create: String = AndroidResHelper.getString(R.string.action_create)
+  override val unlock: String = AndroidResHelper.getString(R.string.action_unlock)
 
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
-  }
+  override val errorUnknown: String = AndroidResHelper.getString(R.string.error_unknown)
 }

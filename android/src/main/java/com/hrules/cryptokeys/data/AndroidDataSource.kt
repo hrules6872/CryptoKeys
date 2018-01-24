@@ -13,14 +13,25 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.data
 
-import org.junit.Test;
+import com.hrules.cryptokeys.domain.entities.Item
 
-import static org.junit.Assert.assertEquals;
+class AndroidDataSource : DataSource {
+  override fun create(password: String) {
+  }
 
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
+  override fun delete() {
+  }
+
+  override fun get(password: String): List<Item> {
+    return listOf()
+  }
+
+  override fun put(password: String, list: List<Item>) {
+  }
+
+  override fun initialized(): Boolean {
+    return true
   }
 }

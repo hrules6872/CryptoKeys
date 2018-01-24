@@ -14,7 +14,14 @@
   ~ limitations under the License.
   -->
 
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-  <background android:drawable="@drawable/ic_launcher_background"/>
-  <foreground android:drawable="@drawable/ic_launcher_foreground"/>
-</adaptive-icon>
+<resources>
+  <dimen name="default_margin">8dp</dimen>
+  <dimen name="default_marginDouble">16dp</dimen>
+  <dimen name="default_padding">8dp</dimen>
+  <dimen name="default_paddingDouble">16dp</dimen>
+
+  <dimen name="default_elevation">4dp</dimen>
+
+  <dimen name="layout_entryPeekHeight">56dp</dimen>
+  <dimen name="layout_entryHeight">220dp</dimen>
+</resources>

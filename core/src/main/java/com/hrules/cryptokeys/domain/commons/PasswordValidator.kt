@@ -13,14 +13,16 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.domain.commons
 
-import org.junit.Test;
+import java.util.regex.Pattern
 
-import static org.junit.Assert.assertEquals;
+private const val PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%_]).{8,20})"
 
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
+object PasswordValidator {
+  private val pattern: Pattern = Pattern.compile(PASSWORD_PATTERN)
+
+  fun validate(password: String): Boolean {
+    return pattern.matcher(password).matches()
   }
 }

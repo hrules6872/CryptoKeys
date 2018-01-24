@@ -13,14 +13,18 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys
 
-import org.junit.Test;
+import android.app.Application
 
-import static org.junit.Assert.assertEquals;
+class App : Application() {
+  override fun onCreate() {
+    super.onCreate()
+    instance = this
+  }
 
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
+  companion object {
+    lateinit var instance: App
+      private set
   }
 }
