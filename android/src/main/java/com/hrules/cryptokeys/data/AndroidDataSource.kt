@@ -15,23 +15,34 @@
 
 package com.hrules.cryptokeys.data
 
+import com.hrules.cryptokeys.App
+import com.hrules.cryptokeys.domain.commons.decrypt
+import com.hrules.cryptokeys.domain.commons.encrypt
 import com.hrules.cryptokeys.domain.entities.Item
+import com.hrules.cryptokeys.domain.entities.serializers.ItemListSerializer
+import java.io.File
+
+private const val FILE_NAME = "database.dat"
 
 class AndroidDataSource : DataSource {
   override fun create(password: String) {
+    getFile().createNewFile()
+    put(password, listOf())
   }
 
   override fun delete() {
+    getFile().delete()
   }
 
   override fun get(password: String): List<Item> {
-    return listOf()
+    return ItemListSerializer.parse(getFile().readText().decrypt(password))
   }
 
   override fun put(password: String, list: List<Item>) {
+    getFile().writeText(ItemListSerializer.stringify(list).encrypt(password))
   }
 
-  override fun initialized(): Boolean {
-    return true
-  }
+  override fun initialized(): Boolean = getFile().exists()
+
+  private fun getFile(): File = App.instance.filesDir.resolveSibling(FILE_NAME)
 }
