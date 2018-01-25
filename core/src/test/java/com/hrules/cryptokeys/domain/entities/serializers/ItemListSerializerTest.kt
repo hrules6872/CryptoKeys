@@ -13,14 +13,20 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys;
+package com.hrules.cryptokeys.domain.entities.serializers
 
-import org.junit.Test;
+import com.hrules.cryptokeys.Utils
+import org.junit.Assert.assertFalse
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
-import static org.junit.Assert.assertEquals;
-
-public class ExampleUnitTest {
-  @Test public void addition_isCorrect() throws Exception {
-    assertEquals(4, 2 + 2);
+@RunWith(JUnit4::class)
+class ItemListSerializerTest {
+  @Test
+  fun `given a valid json when deserialize to Item entity then ok`() {
+    val validJson = Utils.readFile("json/valid_items.json")
+    val items = ItemListSerializer.parse(validJson)
+    assertFalse(items.isEmpty())
   }
 }

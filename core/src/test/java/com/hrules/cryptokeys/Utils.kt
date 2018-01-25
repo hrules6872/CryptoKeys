@@ -14,16 +14,9 @@
  * limitations under the License.
  */
 
-package com.hrules.cryptokeys.domain.entities.serializers
+package com.hrules.cryptokeys
 
-import com.hrules.cryptokeys.domain.entities.Item
-import com.hrules.cryptokeys.domain.entities.serializers.base.Serializer
-import kotlinx.serialization.json.JSON
-
-object ItemSerializer : Serializer<Item> {
-  private val JSONParser: JSON = JSON()
-
-  override fun stringify(input: Item): String = JSONParser.stringify(input)
-
-  override fun parse(input: String): Item = JSONParser.parse(input)
+internal object Utils {
+  fun readFile(filename: String): String =
+      Utils::class.java.classLoader.getResourceAsStream(filename).bufferedReader().use { it.readText() }
 }

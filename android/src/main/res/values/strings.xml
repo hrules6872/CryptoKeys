@@ -24,7 +24,7 @@
   <string name="action_unlock">Unlock</string>
 
   <string name="error_unknown">Something went wrong</string>
-  <string name="error_password">8&#8211;20 length,\nlowercase letter (a&#8211;z),\nuppercase letter (A&#8211;Z),\nnumber (0&#8211;9),\nspecial
-    character (!@#$%_)
+  <string name="error_password">8&#8211;20 length\nlowercase letter (a&#8211;z)\nuppercase letter (A&#8211;Z)\nnumber (0&#8211;9)\nspecial
+    character (&amp;!@#$%_/)
   </string>
 </resources>

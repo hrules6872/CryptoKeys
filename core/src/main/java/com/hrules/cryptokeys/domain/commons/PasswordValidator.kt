@@ -17,7 +17,7 @@ package com.hrules.cryptokeys.domain.commons
 
 import java.util.regex.Pattern
 
-private const val PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%_]).{8,20})"
+private const val PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[&!@#$%_/]).{8,20})"
 
 object PasswordValidator {
   private val pattern: Pattern = Pattern.compile(PASSWORD_PATTERN)
