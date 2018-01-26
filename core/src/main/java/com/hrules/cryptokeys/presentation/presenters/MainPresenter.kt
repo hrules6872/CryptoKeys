@@ -1,5 +1,6 @@
 /*
- * 	Copyright (c) 2018. Héctor de Isidro - hrules6872
+ * Copyright (c) 2018. Héctor de Isidro - hrules6872
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,64 +37,96 @@ class MainPresenter(
       actionEnabled(false)
       unlock(false)
 
+      entryText(String(), String())
+
       model.list = mutableListOf()
       list(model.list)
     }
   }
 
-  fun password(text: String) {
+  fun password(password: String) {
+    model.password = password
+    val validate = PasswordValidator.validate(password)
     view?.apply {
-      val validate = PasswordValidator.validate(text)
       actionEnabled(validate)
       passwordValidate(validate)
     }
   }
 
   fun action() {
-    try {
-      var list = listOf<Item>()
-      if (dataSource.initialized()) {
-        list = dataSource.get(model.password)
-      } else {
-        dataSource.create(model.password)
-      }
+    if (PasswordValidator.validate(model.password)) {
+      try {
+        if (dataSource.initialized()) {
+          model.list = dataSource.get(model.password).toMutableList()
+        } else {
+          dataSource.create(model.password)
+        }
 
-      view?.apply {
-        actionTitle(resString.unlock)
-        actionEnabled(false)
-        unlock(true)
-        list(list)
+        view?.apply {
+          actionTitle(resString.unlock)
+          actionEnabled(false)
+          unlock(true)
+          list(model.list)
+        }
+      } catch (e: Exception) {
+        view?.message(resString.errorWrongPassword)
       }
-    } catch (e: Exception) {
-      view?.showMessage(resString.errorUnknown)
     }
   }
 
   fun entry(description: String, text: String) {
-    view?.entryValidate(description.isNotEmpty() && text.isNotEmpty())
+    val descriptionValidate = description.trim().isNotEmpty()
+    val textValidate = text.trim().isNotEmpty()
+    view?.apply {
+      entryValidate(descriptionValidate, textValidate)
+    }
   }
 
   fun add(description: String, text: String) {
+    if (description.trim().isNotEmpty() and text.trim().isNotEmpty()) {
+      try {
+        model.list.add(Item(description, text))
+        dataSource.put(model.password, model.list)
+        view?.list(model.list)
+      } catch (e: Exception) {
+        view?.message(resString.errorUnknown)
+      }
+    } else {
+      view?.entryError()
+    }
+  }
+
+
+  fun delete(position: Int) {
     try {
-      model.list.add(Item(description, text))
+      model.list.removeAt(position)
       dataSource.put(model.password, model.list)
       view?.list(model.list)
     } catch (e: Exception) {
-      view?.showMessage(resString.errorUnknown)
+      view?.message(resString.errorUnknown)
     }
+  }
+
+  fun copy(position: Int) {
+    if (position < model.list.size) view?.copy(model.list[position].text)
   }
 
   interface Contract : BaseView {
     fun unlock(state: Boolean)
 
-    fun passwordValidate(validated: Boolean)
+    fun passwordValidate(validate: Boolean)
     fun passwordText(password: String)
-    fun entryValidate(validated: Boolean)
 
     fun actionEnabled(state: Boolean)
     fun actionTitle(title: String)
 
+    fun entryValidate(descriptionValidate: Boolean, textValidate: Boolean)
+    fun entryText(description: String, text: String)
+    fun entryError()
+
     fun list(list: List<Item>)
-    fun showMessage(message: String)
+    fun message(message: String)
+
+    fun copy(text: String)
   }
 }

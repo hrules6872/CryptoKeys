@@ -1,5 +1,6 @@
 /*
- * 	Copyright (c) 2018. Héctor de Isidro - hrules6872
+ * Copyright (c) 2018. Héctor de Isidro - hrules6872
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,4 +25,5 @@ object AndroidResString : ResString {
   override val unlock: String = AndroidResHelper.getString(R.string.action_unlock)
 
   override val errorUnknown: String = AndroidResHelper.getString(R.string.error_unknown)
+  override val errorWrongPassword: String = AndroidResHelper.getString(R.string.error_wrongPassword)
 }

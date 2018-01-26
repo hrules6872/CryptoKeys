@@ -1,5 +1,6 @@
 /*
- * 	Copyright (c) 2018. Héctor de Isidro - hrules6872
+ * Copyright (c) 2018. Héctor de Isidro - hrules6872
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,6 +17,9 @@
 package com.hrules.cryptokeys.presentation.extensions
 
 import android.app.Activity
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 
 fun Activity.showMessageShort(text: String) {
@@ -24,4 +28,10 @@ fun Activity.showMessageShort(text: String) {
 
 fun Activity.showMessageLong(text: String) {
   Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+}
+
+fun Activity.hideSoftKeyboardAndClearEditFocus(view: View) {
+  val inputMethodManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+  inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+  view.requestFocus()
 }

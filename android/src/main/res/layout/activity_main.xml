@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ 	Copyright (c) 2018. Héctor de Isidro - hrules6872
+  ~ Copyright (c) 2018. Héctor de Isidro - hrules6872
+  ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
@@ -16,22 +17,46 @@
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
->
+    >
+
   <include layout="@layout/layout_toolbar"/>
-  <include layout="@layout/layout_password"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
+      >
+
+    <merge layout="@layout/layout_password"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/layout_entryPeekHeight"
+        tools:listitem="@layout/item_item"
+        />
+  </LinearLayout>
+
+
   <include layout="@layout/layout_entry"/>
 
   <android.support.design.widget.FloatingActionButton
-      android:id="@+id/action_add"
+      android:id="@+id/action_entry"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:src="@drawable/ic_add"
+      android:visibility="gone"
       app:layout_anchor="@id/layout_entry"
       app:layout_anchorGravity="top|end"
       app:useCompatPadding="true"
-      android:visibility="invisible"
-  />
+      />
 
 </android.support.design.widget.CoordinatorLayout>
