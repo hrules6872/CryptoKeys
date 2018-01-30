@@ -87,7 +87,10 @@ class MainPresenter(
       try {
         model.list.add(Item(description, text))
         dataSource.put(model.password, model.list)
-        view?.list(model.list)
+        view?.apply {
+          entryText(String(), String())
+          list(model.list)
+        }
       } catch (e: Exception) {
         view?.message(resString.errorUnknown)
       }
