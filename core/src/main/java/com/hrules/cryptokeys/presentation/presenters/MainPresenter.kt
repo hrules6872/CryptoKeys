@@ -59,7 +59,7 @@ class MainPresenter(
         if (dataSource.initialized()) {
           model.list = dataSource.get(model.password).toMutableList()
         } else {
-          dataSource.create(model.password)
+          dataSource.put(model.password, listOf())
         }
 
         view?.apply {

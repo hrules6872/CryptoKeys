@@ -19,9 +19,8 @@ package com.hrules.cryptokeys.data
 import com.hrules.cryptokeys.domain.entities.Item
 
 interface DataSource {
-  fun create(password: String)
-  fun delete()
   fun get(password: String): List<Item>
   fun put(password: String, list: List<Item>)
+  fun delete()
   fun initialized(): Boolean
 }

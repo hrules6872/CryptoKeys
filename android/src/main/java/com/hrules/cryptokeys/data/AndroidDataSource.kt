@@ -26,15 +26,6 @@ import java.io.File
 private const val FILE_NAME = "database.dat"
 
 class AndroidDataSource : DataSource {
-  override fun create(password: String) {
-    getFile().createNewFile()
-    put(password, listOf())
-  }
-
-  override fun delete() {
-    getFile().delete()
-  }
-
   override fun get(password: String): List<Item> {
     return ItemListSerializer.parse(getFile().readText().decrypt(password))
   }
@@ -44,6 +35,10 @@ class AndroidDataSource : DataSource {
   }
 
   override fun initialized(): Boolean = getFile().exists()
+
+  override fun delete() {
+    getFile().delete()
+  }
 
   private fun getFile(): File = App.instance.filesDir.resolveSibling(FILE_NAME)
 }

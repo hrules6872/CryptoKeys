@@ -31,7 +31,7 @@
       app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
       >
 
-    <merge layout="@layout/layout_password"/>
+    <include layout="@layout/layout_password"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
