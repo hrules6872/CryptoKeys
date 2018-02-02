@@ -30,7 +30,7 @@ class MainPresenter(
 ) : BasePresenter<MainModel, MainPresenter.Contract>() {
 
   fun resume() {
-    view?.apply {
+    view?.run {
       model.password = String()
       passwordText(model.password)
       actionTitle(if (dataSource.initialized()) resString.unlock else resString.create)
@@ -47,7 +47,7 @@ class MainPresenter(
   fun password(password: String) {
     model.password = password
     val validate = PasswordValidator.validate(password)
-    view?.apply {
+    view?.run {
       actionEnabled(validate)
       passwordValidate(validate)
     }
@@ -62,7 +62,7 @@ class MainPresenter(
           dataSource.put(model.password, listOf())
         }
 
-        view?.apply {
+        view?.run {
           actionTitle(resString.unlock)
           actionEnabled(false)
           unlock(true)
@@ -77,7 +77,7 @@ class MainPresenter(
   fun entry(description: String, text: String) {
     val descriptionValidate = description.trim().isNotEmpty()
     val textValidate = text.trim().isNotEmpty()
-    view?.apply {
+    view?.run {
       entryValidate(descriptionValidate, textValidate)
     }
   }
@@ -87,7 +87,7 @@ class MainPresenter(
       try {
         model.list.add(Item(description, text))
         dataSource.put(model.password, model.list)
-        view?.apply {
+        view?.run {
           entryText(String(), String())
           list(model.list)
         }
