@@ -35,9 +35,9 @@ ext {
 
   dependencies = [
 
-      kotlinCoroutinesVersion = '0.21.2',
+      kotlinCoroutinesVersion = '0.22.1',
       okhttpVersion = '3.9.1',
-      koinVersion = '0.8.1',
+      koinVersion = '0.8.2',
       projectDependencies = [
 
           kotlinStdJdk8       : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
