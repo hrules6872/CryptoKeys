@@ -37,7 +37,6 @@ import com.hrules.cryptokeys.R.id.action_visitWebSite
 import com.hrules.cryptokeys.data.AndroidDataSource
 import com.hrules.cryptokeys.domain.entities.Item
 import com.hrules.cryptokeys.presentation.adapters.ItemAdapter
-import com.hrules.cryptokeys.presentation.adapters.OnClickListener
 import com.hrules.cryptokeys.presentation.adapters.decorators.SpaceItemDecoration
 import com.hrules.cryptokeys.presentation.extensions.hideSoftKeyboardAndClearEditFocus
 import com.hrules.cryptokeys.presentation.extensions.showMessageShort
@@ -57,19 +56,16 @@ class MainActivityView : BaseActivity<MainModel, MainPresenter.Contract, MainPre
   override val presenter: MainPresenter = MainPresenter(AndroidResString, AndroidDataSource())
   private lateinit var bottomSheetBehavior: BottomSheetBehavior<*>
 
-  private val itemAdapter = ItemAdapter(object : OnClickListener {
-    override fun onItemDeleteClick(position: Int) {
-      AlertDialog.Builder(this@MainActivityView)
-          .setMessage(getString(R.string.text_confirmation))
-          .setCancelable(false)
-          .setPositiveButton(getString(R.string.text_yes), { _, _ -> presenter.delete(position) })
-          .setNegativeButton(getString(R.string.text_no), null).show()
-    }
-
-    override fun onItemCopyClick(position: Int) {
-      presenter.copy(position)
-    }
-  })
+  private val itemAdapter = ItemAdapter(
+      onItemDeleteClick = { position ->
+        AlertDialog.Builder(this@MainActivityView)
+            .setMessage(getString(R.string.text_confirmation))
+            .setCancelable(false)
+            .setPositiveButton(getString(R.string.text_yes), { _, _ -> presenter.delete(position) })
+            .setNegativeButton(getString(R.string.text_no), null).show()
+      },
+      onItemCopyClick = { position -> presenter.copy(position) }
+  )
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -96,16 +92,8 @@ class MainActivityView : BaseActivity<MainModel, MainPresenter.Contract, MainPre
       }
     }
 
-    edit_description.textWatcher {
-      onTextChanged { _, _, _, _ ->
-        presenter.entry(edit_description.text.toString(), edit_text.text.toString())
-      }
-    }
-    edit_text.textWatcher {
-      onTextChanged { _, _, _, _ ->
-        presenter.entry(edit_description.text.toString(), edit_text.text.toString())
-      }
-    }
+    edit_description.textWatcher { onTextChangedShout { presenter.entry(edit_description.text.toString(), edit_text.text.toString()) } }
+    edit_text.textWatcher { onTextChangedShout { presenter.entry(edit_description.text.toString(), edit_text.text.toString()) } }
 
     action_entry.setOnClickListener {
       when (bottomSheetBehavior.state) {

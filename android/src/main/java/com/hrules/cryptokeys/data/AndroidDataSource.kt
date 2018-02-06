@@ -26,9 +26,7 @@ import java.io.File
 private const val FILE_NAME = "database.dat"
 
 class AndroidDataSource : DataSource {
-  override fun get(password: String): List<Item> {
-    return ItemListSerializer.parse(getFile().readText().decrypt(password))
-  }
+  override fun get(password: String): List<Item> = ItemListSerializer.parse(getFile().readText().decrypt(password))
 
   override fun put(password: String, list: List<Item>) {
     getFile().writeText(ItemListSerializer.stringify(list).encrypt(password))

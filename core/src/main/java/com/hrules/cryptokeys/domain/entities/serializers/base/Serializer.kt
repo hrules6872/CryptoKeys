@@ -18,6 +18,5 @@ package com.hrules.cryptokeys.domain.entities.serializers.base
 
 interface Serializer<TYPE> {
   fun stringify(input: TYPE): String
-
   fun parse(input: String): TYPE
 }

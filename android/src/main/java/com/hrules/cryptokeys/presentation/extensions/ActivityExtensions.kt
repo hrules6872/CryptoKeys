@@ -26,10 +26,6 @@ fun Activity.showMessageShort(text: String) {
   Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
 }
 
-fun Activity.showMessageLong(text: String) {
-  Toast.makeText(this, text, Toast.LENGTH_LONG).show()
-}
-
 fun Activity.hideSoftKeyboardAndClearEditFocus(view: View) {
   val inputMethodManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
   inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)

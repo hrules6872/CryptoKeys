@@ -77,9 +77,7 @@ class MainPresenter(
   fun entry(description: String, text: String) {
     val descriptionValidate = description.trim().isNotEmpty()
     val textValidate = text.trim().isNotEmpty()
-    view?.run {
-      entryValidate(descriptionValidate, textValidate)
-    }
+    view?.entryValidate(descriptionValidate, textValidate)
   }
 
   fun add(description: String, text: String) {
@@ -98,7 +96,6 @@ class MainPresenter(
       view?.entryError()
     }
   }
-
 
   fun delete(position: Int) {
     try {

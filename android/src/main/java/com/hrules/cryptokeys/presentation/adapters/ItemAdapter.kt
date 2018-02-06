@@ -25,31 +25,27 @@ import android.widget.TextView
 import com.hrules.cryptokeys.R
 import com.hrules.cryptokeys.domain.entities.Item
 
-interface OnClickListener {
-  fun onItemCopyClick(position: Int)
-  fun onItemDeleteClick(position: Int)
-}
-
-class ItemAdapter(private val listener: OnClickListener) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class ItemAdapter(
+    private val onItemDeleteClick: (Int) -> Unit,
+    private val onItemCopyClick: (Int) -> Unit
+) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
   private var list: List<Item> = listOf()
 
-
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val description: TextView = itemView.findViewById(R.id.description)
-    val text: TextView = itemView.findViewById(R.id.text)
-    val delete: ImageButton = itemView.findViewById(R.id.action_delete)
-    val copy: ImageButton = itemView.findViewById(R.id.action_copy)
-  }
+    private val description: TextView = itemView.findViewById(R.id.description)
+    private val text: TextView = itemView.findViewById(R.id.text)
+    private val delete: ImageButton = itemView.findViewById(R.id.action_delete)
+    private val copy: ImageButton = itemView.findViewById(R.id.action_copy)
 
-  override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    val item = list[position]
-    holder.apply {
+    fun bind(item: Item, onItemDeleteClick: (Int) -> Unit, onItemCopyClick: (Int) -> Unit) {
       description.text = item.description
       text.text = item.text
-      delete.setOnClickListener { listener.onItemDeleteClick(position) }
-      copy.setOnClickListener { listener.onItemCopyClick(position) }
+      delete.setOnClickListener { onItemDeleteClick(adapterPosition) }
+      copy.setOnClickListener { onItemCopyClick(adapterPosition) }
     }
   }
+
+  override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(list[position], onItemDeleteClick, onItemCopyClick)
 
   override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder =
       ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_item, parent, false))
